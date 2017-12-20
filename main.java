@@ -76,24 +76,56 @@ public class main {
 		System.out.println("Place Robot");
 		System.out.println("Please enter the position you wish to place the robot");
 		System.out.println("-------------------");
-		System.out.println("X (0-4):");
-	
+		
 		//try catch statement to ensure input is a number
-
+		boolean retry = false;
+		int loopCount = 0;
+		while(!retry) {
 		try {
+			System.out.println("X (0-4):");
 			x = sc.nextInt();
-
+			while(x > 4) {
+				System.out.println("Please enter number between 0-4");
+				x = sc.nextInt();
+			}
+			retry = true;
 		}
 		catch(InputMismatchException e) {
+			if(loopCount == 3) {
+				System.out.println("Too many incorrect attempts. Exiting application");
+				System.exit(0);
+			}
 			System.out.println("Please enter value as number");
+			sc.next();
+			loopCount ++;
+			
 		}
+	}
 		
-		System.out.println("Y (0-4):");
+		
+		//Resetting variable
+		retry = false;
+		loopCount = 0;
+		
+		while(!retry) {
 		try {
+			System.out.println("Y (0-4):");
 			y = sc.nextInt();
+			while(y > 4) {
+				System.out.println("Please enter number between 0-4");
+				y = sc.nextInt();
+			}
+			retry = true;
 		}
-		catch(InputMismatchException ef) {
+		catch(InputMismatchException e) {
+			if(loopCount == 3) {
+				System.out.println("Too many incorrect attempts. Exiting application");
+				System.exit(0);
+			}
 			System.out.println("Please enter value as number");
+			sc.next();
+			loopCount ++;
+		}
 		}
 		
 		sc.nextLine(); //blank scan to remove \n occupying next line
@@ -102,19 +134,25 @@ public class main {
 		System.out.println("North, East, South, West");
 		
 		//make entered value case insensitive
-		direction = sc.nextLine().toUpperCase();
+		boolean valid = false;
 		
-		
+		while(valid == false) {
+			direction = sc.nextLine().toUpperCase();
 		if(direction.equals("NORTH") || direction.equals("N")) {
 			face = "North";
+			valid = true;
 		}else if(direction.equals("EAST") || direction.equals("E")){
 			face = "East";
+			valid = true;
 		}else if(direction.equals("SOUTH") || direction.equals("S")){
 			face = "South";
+			valid = true;
 		}else if(direction.equals("WEST") || direction.equals("W")) {
 			face = "West";
+			valid = true;
 		}else {
 			System.out.println("Invalid direction");
+		}
 		}
 		//store x and y values in our row and column variables
 		row = x;
@@ -169,6 +207,7 @@ public class main {
 		System.out.println("COLUMN: " + column);
 		System.out.println("FACE: " + face);
 	}
+	
 }
 
 	
