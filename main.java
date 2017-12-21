@@ -77,9 +77,11 @@ public class main {
 		System.out.println("Please enter the position you wish to place the robot");
 		System.out.println("-------------------");
 		
-		//try catch statement to ensure input is a number
 		boolean retry = false;
 		int loopCount = 0;
+		
+		
+		//try catch statement to ensure input is a valid number
 		while(!retry) {
 		try {
 			System.out.println("X (0-4):");
@@ -91,6 +93,7 @@ public class main {
 			retry = true;
 		}
 		catch(InputMismatchException e) {
+			//Exit the application if too many incorrect attempts have been made
 			if(loopCount == 3) {
 				System.out.println("Too many incorrect attempts. Exiting application");
 				System.exit(0);
@@ -131,13 +134,15 @@ public class main {
 		sc.nextLine(); //blank scan to remove \n occupying next line
 
 		System.out.println("Please enter the direction you would like the robot to face");
-		System.out.println("North, East, South, West");
+		System.out.println("North, East, South, West (N, E, S, W)");
 		
-		//make entered value case insensitive
+		
 		boolean valid = false;
 		
 		while(valid == false) {
+			//make entered value case insensitive
 			direction = sc.nextLine().toUpperCase();
+			//allow for single character or whole word direction
 		if(direction.equals("NORTH") || direction.equals("N")) {
 			face = "North";
 			valid = true;
@@ -159,7 +164,7 @@ public class main {
 		column = y;
 
 }
-	
+	//Moves robot 1 space in the current direction it is facing
 	private static void moveRobot() {
 		System.out.println("Move Robot");
 		if(face.equals("North") && column < 4) {
@@ -175,6 +180,7 @@ public class main {
 			System.out.println("Robot is on edge. View report to see position.");
 		}
 	}
+	//rotates the robot 90 degrees left
 	private static void leftRobot() {
 		System.out.println("Left Robot");
 		if(face.equals("North")) {
@@ -187,6 +193,7 @@ public class main {
 			face = "South";
 		}
 	}
+	//rotates the robot 90 degrees right
 	private static void rightRobot() {
 		System.out.println("Right Robot");
 		if(face.equals("North")) {
@@ -199,6 +206,7 @@ public class main {
 			face = "North";
 		}
 	}
+	//displays the current position of the robot and the way it is facing
 	private static void reportRobot() {
 		System.out.println("Report Robot");
 		System.out.println("-------------------");
