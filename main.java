@@ -27,7 +27,7 @@ public class main {
 		System.out.printf("%-28s%s\n", "Exit Program", "X");
 		System.out.println();
 
-	     // Prompt user to enter selection and make it case insensitive
+	    // Prompt user to enter selection and make it case insensitive
 	    System.out.print("Enter selection: ");
 	    userSelection = sc.nextLine().toUpperCase();
 	
